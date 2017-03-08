@@ -1,0 +1,19 @@
+# {{ ansible_managed }}
+[Unit]
+Description=Icinga Classic UI CGI service
+After=syslog.target
+
+[Service]
+WorkingDirectory={{  icingaclassic_script_path }}
+EnvironmentFile=-{{ icingaclassic_uwsgi_env }}
+ExecStart=/sbin/uwsgi --ini {{ icingaclassic_uwsgi_config }}
+User={{ icingaclassic_cgi_user }}
+Group={{ icingaclassic_cgi_group }}
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target

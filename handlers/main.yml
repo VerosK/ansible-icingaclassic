@@ -1,0 +1,7 @@
+- name: Restart icinga-classicui
+  service:
+    name: '{{ icingaclassic_cgi_service }}'
+    state: restarted
+
+- name: systemctl daemon-reload
+  shell: systemctl daemon-reload

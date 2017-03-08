@@ -1,0 +1,19 @@
+
+# Disable default PHP
+icingaclassic_uwsgi_packages_yum:
+  - uwsgi
+  - uwsgi-plugin-common
+
+
+icingaclassic_cgi_service: icinga-classicui
+icingaclassic_uwsgi_config: /etc/icinga/uwsgi.ini
+icingaclassic_uwsgi_env: /etc/icinga/uwsgi.env
+icingaclassic_cgi_user: icinga
+icingaclassic_cgi_group: icingacmd
+icingaclassic_cgi_socket_dir: /run/icinga-classicui
+icingaclassic_cgi_socket: /run/icinga-classicui/uwsgi.socket
+
+icingaclassic_script_path: /usr/lib64/icinga/cgi
+icingaclassic_uri: /icinga/cgi-bin
+
+icingaclassic_threads: 6

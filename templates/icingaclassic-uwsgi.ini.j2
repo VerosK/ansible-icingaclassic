@@ -1,0 +1,32 @@
+# {{ ansible_managed }}
+[uwsgi]
+
+# CGI debugging
+#http-socket = 127.0.0.1:8080
+#http-socket-modifier1 = 9
+# end of CGI debugging
+
+socket = {{ icingaclassic_cgi_socket }}
+chmod-socket = 666
+uid = {{ icingaclassic_cgi_user }}
+gid = {{ icingaclassic_cgi_group }}
+plugin = cgi
+chdir = {{  icingaclassic_script_path }}
+touch-reload = {{ icingaclassic_uwsgi_config }}
+
+cgi = /var/www/cgi-bin
+cgi-allowed-ext = .cgi
+cgi = {{ icingaclassic_uri }}={{ icingaclassic_script_path }}
+
+threads = {{ icingaclassic_threads }}
+workers = 2
+
+# autoscale
+cheaper = 1
+cheaper-algo = spare
+cheaper-initial = 1
+cheaper-step = 1
+cheaper-overload = 15
+;cheaper-step = 90
+# kill workers after 30 seconds
+;idle = 30
