@@ -1,4 +1,4 @@
-# ansible role VerosK.icingaclassic
+# ansible role VerosK.icingaclassic-cgi
 
 This sets up icingaclassic CGI without Apache. CGIs are spawned in 
 [uwsgi](https://uwsgi-docs.readthedocs.io/en/latest/) containers.
