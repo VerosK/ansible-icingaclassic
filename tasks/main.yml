@@ -5,6 +5,13 @@
     state: present
   with_items: '{{ icingaclassic_uwsgi_packages_yum }}'
 
+- name: Install Icinga classic CGIs
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items: '{{ icingaclassic_packages_yum }}'
+
+
 - name: Create Icinga classicui tmpfiles entry
   copy:
     content: 'd {{ icingaclassic_cgi_socket_dir }} 0755 {{ icingaclassic_cgi_user }} {{ icingaclassic_cgi_user }} -'
@@ -17,6 +24,13 @@
     mode: '0755'
     owner: '{{ icingaclassic_cgi_user }}'
     group: '{{ icingaclassic_cgi_group }}'
+
+- name: Create dir for Icinga classic uwsgi config
+  file:
+    state: directory
+    dest: '{{ icingaclassic_uwsgi_config|dirname }}'
+
+
 
 - name: Create Icinga classic uwsgi config
   template:

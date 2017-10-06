@@ -4,6 +4,8 @@ icingaclassic_uwsgi_packages_yum:
   - uwsgi
   - uwsgi-plugin-common
 
+icingaclassic_packages_yum:
+  - icinga-gui
 
 icingaclassic_cgi_service: icinga-classicui
 icingaclassic_uwsgi_config: /etc/icinga/uwsgi.ini
