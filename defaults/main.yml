@@ -5,6 +5,7 @@ icingaclassic_uwsgi_packages_yum:
   - uwsgi-plugin-common
 
 icingaclassic_packages_yum:
+  - icinga2-classicui-config
   - icinga-gui
 
 icingaclassic_cgi_service: icinga-classicui
