@@ -1,0 +1,34 @@
+- name: Install uwsgi CGI wrapper
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items: '{{ icingaclassic_uwsgi_packages_yum }}'
+
+- name: Create Icinga classicui tmpfiles entry
+  copy:
+    content: 'd {{ icingaclassic_cgi_socket_dir }} 0755 {{ icingaclassic_cgi_user }} {{ icingaclassic_cgi_user }} -'
+    dest: "/etc/tmpfiles.d/{{ icingaclassic_cgi_service }}.conf"
+
+- name: Create Icinga classicui tmpdir
+  file:
+    path: '{{ icingaclassic_cgi_socket_dir }}'
+    state: directory
+    mode: '0755'
+    owner: '{{ icingaclassic_cgi_user }}'
+    group: '{{ icingaclassic_cgi_group }}'
+
+- name: Create dir for Icinga classic uwsgi config
+  file:
+    state: directory
+    dest: '{{ icingaclassic_uwsgi_config|dirname }}'
+
+- name: Create Icinga classic uwsgi config
+  template:
+    src: icingaclassic-uwsgi.ini.j2
+    dest: '{{ icingaclassic_uwsgi_config }}'
+
+- name: Create Icinga classic systemd unit
+  template:
+    src: icingaclassic-service.ini.j2
+    dest: "/etc/systemd/system/{{ icingaclassic_cgi_service }}.service"
+  notify: systemctl daemon-reload

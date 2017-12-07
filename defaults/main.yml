@@ -1,11 +1,14 @@
 
+# Start icinga classic CGI with uwsgi
+icingaclassic_with_uwsgi: true
+
 # Disable default PHP
 icingaclassic_uwsgi_packages_yum:
   - uwsgi
   - uwsgi-plugin-common
 
 icingaclassic_packages_yum:
-  - icinga2-classicui-config
+#  - icinga2-classicui-config
   - icinga-gui
 
 icingaclassic_cgi_service: icinga-classicui
@@ -19,4 +22,21 @@ icingaclassic_cgi_socket: /run/icinga-classicui/uwsgi.socket
 icingaclassic_script_path: /usr/lib64/icinga/cgi
 icingaclassic_uri: /icinga/cgi-bin
 
+icingaclassic_cgi_config: /etc/icinga/cgi.cfg
+
+
 icingaclassic_threads: 6
+
+icingaclassic_users:
+    - icingaadmin
+
+# use backup: yes on config files
+icingaclassic_backup_configs: true
+
+# Date format:
+# possible values: euro, us, strict-iso8601, iso8601
+icingaclassic_date_format: 'euro'
+
+# Main log roration methods
+# n (none), h (hourly), d (daily), w (weekly), m(monthly)
+icingaclassic_logrotation: 'd'
