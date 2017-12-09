@@ -66,8 +66,8 @@ command_file=/var/run/icinga2/cmd/icinga2.cmd
 check_external_commands=1
 interval_length=60
 status_update_interval=10
-log_file=/var/log/icinga2/compat/icinga.log
+log_file={{  icingaclassic_logpath }}
 log_rotation_method={{ icingaclassic_logrotation }}
-log_archive_path=/var/log/icinga2/compat/archives
+log_archive_path={{  icingaclassic_logarchive_path }}
 date_format={{ icingaclassic_date_format }}
 #   EOF

@@ -40,3 +40,6 @@ icingaclassic_date_format: 'euro'
 # Main log roration methods
 # n (none), h (hourly), d (daily), w (weekly), m(monthly)
 icingaclassic_logrotation: 'd'
+
+icingaclassic_logpath: /var/log/icinga2/compat/icinga.log
+icingaclassic_logarchive_path: /var/log/icinga2/compat/archives
